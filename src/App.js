@@ -1,5 +1,11 @@
+import MainBar from "./composants/MainBar";
+
 function App() {
-  return <div></div>;
+  return (
+    <>
+      <MainBar />
+    </>
+  );
 }
 
 export default App;
