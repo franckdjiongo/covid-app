@@ -1,5 +1,4 @@
 import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   CssBaseline,
   AppBar,
@@ -10,15 +9,9 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import PublicIcon from "@mui/icons-material/Public";
 
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
-
 const MainBar = () => {
   return (
-    <ThemeProvider sx={{ flexGrow: 1 }} theme={theme}>
+    <>
       <CssBaseline />
       <AppBar
         position="static"
@@ -48,7 +41,7 @@ const MainBar = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-    </ThemeProvider>
+    </>
   );
 };
 

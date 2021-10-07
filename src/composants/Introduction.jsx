@@ -17,7 +17,7 @@ const Introduction = ({ nombrePaysAffecte }) => {
         >
           GLOBAL
         </Typography>
-        <Typography variant="h4" component="p" color="red">
+        <Typography variant="h4" component="p" color="error.dark">
           Pays affectés : {nombrePaysAffecte}
         </Typography>
       </Grid>
