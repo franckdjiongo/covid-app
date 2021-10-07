@@ -18,7 +18,7 @@ const MainBar = () => {
         color="default"
         elevation={0}
         sx={{
-          position: "relative",
+          position: "fixed",
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
           boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
         }}

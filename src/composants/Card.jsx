@@ -5,14 +5,14 @@ import React from "react";
 
 const MyContainer = styled("div")(({ boxShadowColor }) => ({
   width: "100%",
-  margin: "0 auto",
+  //margin: "0 auto",
   padding: "9px",
-  marginTop: "25px",
-  borderTop: 1,
+  //marginTop: "25px",
+  borderBottom: 3,
   maxWidth: "90%",
   background: grey[900],
   borderRadius: 4,
-  boxShadow: `0 1px 3px 1px ${boxShadowColor}`,
+  boxShadow: `0 1px 3px 3px ${boxShadowColor}`,
 }));
 
 const Card = ({ boxShadowColor, titre, children, resultat }) => {
