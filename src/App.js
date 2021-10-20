@@ -1,30 +1,50 @@
-import Introduction from "./composants/Introduction";
-import MainBar from "./composants/MainBar";
 import { ThemeProvider } from "@mui/material/styles";
+import { useFetchDataAll } from "./CustomHooks/UseFetchDataAll";
+import { useMyLocation } from "./CustomHooks/UseMyLocation";
+import { useFetchDataYesterday } from "./CustomHooks/useFetchDataYesterday";
+import React, { useMemo } from "react";
+import GlobalPage from "./Pages/GlobalPage";
+import MainPage from "./Pages/MainPage";
 import theme from "./styles/styles";
-import MesCards from "./composants/MesCards";
-import Section from "./composants/sections/Section";
-import { styled } from "@mui/system";
-
-const Container = styled("div")({
-  width: "100%",
-  margin: "0 auto",
-  padding: "20px",
-  //maxWidth: "90%",
-});
+import LoadingMessage from "./composants/LoadingMessage";
 
 function App() {
+  const dateYesterday = useMemo(
+    () =>
+      new Date().getFullYear() +
+      "-" +
+      (new Date().getMonth() + 1) +
+      "-" +
+      (new Date().getDate() - 1),
+    []
+  );
+  const [infoLocation, erreurLocation] = useMyLocation();
+  const countryName = localStorage.getItem("country");
+  const country = useMemo(() => countryName, [countryName]);
+  const [dataAll, loading, erreurDataAll] = useFetchDataAll(country);
+  const [dataYesterdayConfirmed, erreurDataYesterdayConfirmed] =
+    useFetchDataYesterday(country, dateYesterday, "confirmed");
+  const [dataYesterdayDeaths, erreurDataYesterdayDeaths] =
+    useFetchDataYesterday(country, dateYesterday, "deaths");
+
+  if (loading) {
+    return <LoadingMessage />;
+  }
+  if (!dataAll) return null;
   return (
     <>
       <ThemeProvider theme={theme}>
-        <MainBar />
-        <Container>
-          <Introduction nombrePaysAffecte={223} />
-          <MesCards borderHaut={"none"} />
-          <Section title={"REGIONS"} color="gray" />
-          <Section title={"PAYS LES PLUS AFFECTÉS"} color="red" />
-          <Section title={"PAYS LES MOINS AFFECTÉS"} color="yellow" />
-        </Container>
+        {/* <GlobalPage /> */}
+        {!erreurLocation ||
+        !erreurDataAll ||
+        !erreurDataYesterdayConfirmed ||
+        !erreurDataYesterdayDeaths ? (
+          <MainPage
+            infoLocation={infoLocation}
+            data={[dataAll, dataYesterdayConfirmed, dataYesterdayDeaths]}
+            erreurDataAll={erreurDataAll}
+          />
+        ) : undefined}
       </ThemeProvider>
     </>
   );
