@@ -3,7 +3,6 @@ import MyContainer from "../MyContainer";
 
 import { styled } from "@mui/system";
 import { Stack, Typography } from "@mui/material";
-import MesCards from "../MesCards";
 
 const Circle = styled("div")(({ color }) => ({
   borderRadius: "50%",
@@ -27,7 +26,6 @@ const Section = ({ title, color, resultat }) => {
             {title}
           </Typography>
         </Stack>
-        <MesCards borderHaut={"none"} />
       </Wrapper>
     </MyContainer>
   );
