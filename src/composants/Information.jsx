@@ -3,6 +3,23 @@ import { Stack, Typography, Card } from "@mui/material";
 import donneeInformation from "../data/donneeInformation";
 
 const Information = ({ data }) => {
+  const renderDonneeDhier = () => {
+    return Object.values(donneeInformation(data))
+      .slice(0, 4)
+      .map((typography, key) => (
+        <Typography
+          key={key}
+          variant="h5"
+          component="h1"
+          color={typography.color}
+          textAlign="center"
+          alignItems="center"
+        >
+          {typography.name}
+          {typography.content}
+        </Typography>
+      ));
+  };
   return (
     <Card>
       <Stack
@@ -19,16 +36,24 @@ const Information = ({ data }) => {
         >
           CAS
         </Typography>
+        <Typography
+          variant="body1"
+          component="h1"
+          sx={{ fontWeight: "bold", letterSpacing: 5 }}
+        >
+          (Données datant d'hier)
+        </Typography>
         {!data ? (
           <div>
             <h1>Chargement des données</h1>
           </div>
         ) : (
-          Object.values(donneeInformation(data)).map((typography, key) => (
+          Object.values(donneeInformation(data))
+          .map((typography, key) => (
             <Typography
               key={key}
-              variant="h4"
-              component="p"
+              variant="h5"
+              component="h1"
               color={typography.color}
               textAlign="center"
               alignItems="center"

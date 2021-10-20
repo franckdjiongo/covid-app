@@ -2,12 +2,12 @@ import MainBar from "../composants/MainBar";
 import { Button, Container } from "@mui/material";
 import CardLocation from "../composants/CardLocation";
 import Information from "../composants/Information";
-
 import { Grid } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
 const MainPage = ({ infoLocation, data, erreurDataAll }) => {
+  let history = useHistory();
   if (erreurDataAll) return <pre>{JSON.stringify(erreurDataAll, null, 2)}</pre>;
-
   return (
     <>
       <MainBar />
@@ -46,6 +46,7 @@ const MainPage = ({ infoLocation, data, erreurDataAll }) => {
               paddingLeft: "5rem",
               paddingRight: "5rem",
             }}
+            onClick={() => history.push("/global")}
           >
             GLOBAL
           </Button>

@@ -24,13 +24,14 @@ const donneeInformation = (data) => {
     },
     typography5: {
       color: "warning.light",
-      name: "Confirmés hier : ",
+      name: "Confirmés avant-hier : ",
       content: dataYesterdayConfirmed,
     },
+
     typography6: {
       color: "error.light",
-      name: "Morts hier : ",
-      content: dataYesterdayDeaths,
+      name: "Morts avant-hier : ",
+      content: dataAll.deaths - dataYesterdayDeaths,
     },
   };
 };

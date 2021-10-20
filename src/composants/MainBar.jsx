@@ -8,8 +8,11 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PublicIcon from "@mui/icons-material/Public";
+import { useHistory } from "react-router-dom";
 
 const MainBar = () => {
+  let history = useHistory();
+
   return (
     <>
       <CssBaseline />
@@ -24,7 +27,11 @@ const MainBar = () => {
         }}
       >
         <Toolbar>
-          <IconButton aria-label="home" size="large">
+          <IconButton
+            onClick={() => history.goBack()}
+            aria-label="home"
+            size="large"
+          >
             <PublicIcon fontSize="large" />
           </IconButton>
           <Typography

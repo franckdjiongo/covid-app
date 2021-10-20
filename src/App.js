@@ -1,7 +1,8 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { useFetchDataAll } from "./CustomHooks/UseFetchDataAll";
-import { useMyLocation } from "./CustomHooks/UseMyLocation";
+import { useFetchDataAll } from "./CustomHooks/useFetchDataAll";
+import { useMyLocation } from "./CustomHooks/useMyLocation";
 import { useFetchDataYesterday } from "./CustomHooks/useFetchDataYesterday";
+import { Route, Switch } from "react-router";
 import React, { useMemo } from "react";
 import GlobalPage from "./Pages/GlobalPage";
 import MainPage from "./Pages/MainPage";
@@ -15,7 +16,7 @@ function App() {
       "-" +
       (new Date().getMonth() + 1) +
       "-" +
-      (new Date().getDate() - 1),
+      (new Date().getDate() - 2),
     []
   );
   const [infoLocation, erreurLocation] = useMyLocation();
@@ -34,17 +35,33 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {/* <GlobalPage /> */}
-        {!erreurLocation ||
-        !erreurDataAll ||
-        !erreurDataYesterdayConfirmed ||
-        !erreurDataYesterdayDeaths ? (
-          <MainPage
-            infoLocation={infoLocation}
-            data={[dataAll, dataYesterdayConfirmed, dataYesterdayDeaths]}
-            erreurDataAll={erreurDataAll}
-          />
-        ) : undefined}
+        <Switch>
+          {!erreurLocation ||
+          !erreurDataAll ||
+          !erreurDataYesterdayConfirmed ||
+          !erreurDataYesterdayDeaths ? (
+            <Route
+              path="/"
+              exact
+              // render={(props) => (
+              //   <MainPage
+              //     {...props}
+              //     infoLocation={infoLocation}
+              //     data={[dataAll, dataYesterdayConfirmed, dataYesterdayDeaths]}
+              //     erreurDataAll={erreurDataAll}
+              //   />
+              // )}
+            >
+              {" "}
+              <MainPage
+                infoLocation={infoLocation}
+                data={[dataAll, dataYesterdayConfirmed, dataYesterdayDeaths]}
+                erreurDataAll={erreurDataAll}
+              />
+            </Route>
+          ) : undefined}
+          <Route path="/global" component={GlobalPage} />
+        </Switch>
       </ThemeProvider>
     </>
   );
