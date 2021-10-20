@@ -5,9 +5,7 @@ import React from "react";
 
 const MyContainer = styled("div")(({ boxShadowColor }) => ({
   width: "100%",
-  //margin: "0 auto",
   padding: "9px",
-  //marginTop: "25px",
   borderBottom: 3,
   maxWidth: "90%",
   background: grey[900],

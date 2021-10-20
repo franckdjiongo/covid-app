@@ -1,4 +1,3 @@
-import MainBar from "../composants/MainBar";
 import { Button, Container } from "@mui/material";
 import CardLocation from "../composants/CardLocation";
 import Information from "../composants/Information";
@@ -10,7 +9,6 @@ const MainPage = ({ infoLocation, data, erreurDataAll }) => {
   if (erreurDataAll) return <pre>{JSON.stringify(erreurDataAll, null, 2)}</pre>;
   return (
     <>
-      <MainBar />
       {data ? (
         <Container
           sx={{

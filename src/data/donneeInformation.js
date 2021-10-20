@@ -1,4 +1,5 @@
 const donneeInformation = (data) => {
+  
   const [dataAll, dataYesterdayConfirmed, dataYesterdayDeaths] = data;
 
   return {
